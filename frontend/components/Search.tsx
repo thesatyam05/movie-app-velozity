@@ -4,6 +4,8 @@ import useDebounce from '../hooks/Debounce.js';
 
 import { useMovieStore } from '../src/zustand/store.js';
 
+import { baseUrl } from '../config/api.js';
+
 export const Search = () => {
 	const movieStore = useMovieStore();
 
@@ -14,7 +16,7 @@ export const Search = () => {
 		if (!debouncedSearchTerm) return movieStore.setSearchResults([]);
 		try {
 			const resp = await fetch(
-				`http://localhost:8000/api/movies/search?query=${debouncedSearchTerm}`
+				`https://movie-app-velozity-xkww.vercel.app/api/movies/search?query=${debouncedSearchTerm}`
 			);
 			const results = await resp.json();
 			movieStore.setSearchResults(results);

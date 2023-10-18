@@ -1,12 +1,14 @@
 import { create } from 'zustand';
 
+import { baseUrl } from '../../config/api';
+
 export const useMovieStore = create((set) => ({
 	searchResults: [],
 	favorites: [],
 	setSearchResults: (results) => set({ searchResults: results }),
 	fetchFavorites: async () => {
 		try {
-			const response = await fetch(`http://localhost:8000/api/movies/favorites/all`, {
+			const response = await fetch(`${baseUrl}/api/movies/favorites/all`, {
 				method: 'GET',
 			});
 
